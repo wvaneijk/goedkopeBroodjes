@@ -15,10 +15,12 @@ def add_recipe():
 
     # Here, you can further process, store, or respond with the interpretation
     print(interpretation)
-    recipe_uuid = str(uuid.uuid4())
 
-
-    return jsonify({"message": "Recipe received and interpreted", "interpretation": interpretation, "uuid": recipe_uuid}), 200
+    return jsonify({
+        "message": "Recipe received and interpreted",
+        "id": interpretation['id'],
+        "interpretation": interpretation
+    }), 200
 
 
 if __name__ == '__main__':

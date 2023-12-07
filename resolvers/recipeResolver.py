@@ -14,6 +14,7 @@ def resolve_recipe(recipe_data):
         'main course': ['steak', 'pasta', 'salad', 'pizza'],
         # Add more categories and keywords as needed
     }
+    recipe_uuid = str(uuid.uuid4())
     category = 'others'
     name_description = recipe_data.get('name', '') + ' ' + recipe_data.get('description', '')
     for cat, keyws in keywords.items():
@@ -24,5 +25,6 @@ def resolve_recipe(recipe_data):
     return {
         'number_of_ingredients': num_ingredients,
         'estimated_preparation_time_minutes': estimated_prep_time,
-        'category': category
+        'category': category,
+        'id': recipe_uuid
     }
