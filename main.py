@@ -1,19 +1,24 @@
 from flask import Flask, request, jsonify
 
+import resolvers.recipeResolver
+import uuid
+
 app = Flask(__name__)
 
 
 @app.route('/recipe', methods=['POST'])
 def add_recipe():
-    # Get the JSON data sent in the POST request
     recipe_data = request.json
 
-    # Implement your logic here (e.g., save to database)
-    # For this example, we'll just print it
-    print(recipe_data)
+    # Interpret the recipe
+    interpretation = resolvers.recipeResolver.resolve_recipe(recipe_data)
 
-    # Return a response
-    return jsonify({"message": "Recipe received successfully"}), 200
+    # Here, you can further process, store, or respond with the interpretation
+    print(interpretation)
+    recipe_uuid = str(uuid.uuid4())
+
+
+    return jsonify({"message": "Recipe received and interpreted", "interpretation": interpretation, "uuid": recipe_uuid}), 200
 
 
 if __name__ == '__main__':
