@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://127.0.0.1:5000/recipe",
+			"name": "add sandwich",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -32,6 +32,79 @@
 					"port": "5000",
 					"path": [
 						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/goodfood",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"goodfood"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/sandwiches?search=kip",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sandwiches"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "kip"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/sandwiches/rec_clop7luhq14653bsqq2g",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sandwiches",
+						"rec_clop7luhq14653bsqq2g"
 					]
 				}
 			},
