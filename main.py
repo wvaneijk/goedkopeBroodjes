@@ -15,6 +15,15 @@ def add_recipe():
     response = dbUtils.get_db_client().records().insert("GoodFood", resolvedData)
     return jsonify(response), status_code
 
+@app.route('/updaterecipe', methods=['PUT'])
+def add_recipe():
+    recipe_data = request.json
+
+    resolvedData, status_code = resolvers.recipeResolver.resolve_recipe(recipe_data)
+    response = dbUtils.get_db_client().records().insert("GoodFood", resolvedData)
+    return jsonify(response), status_code
+
+
 @app.route('/goodfood', methods=['GET'])
 def get_broodjes():
     data = dbUtils.get_db_client().data().query("GoodFood", {
