@@ -33,10 +33,9 @@ def get_all_broodjes():
     })
     print(data)
     
-    return jsonify({
-        "message": "Available broodjes",
-        "data": data
-    }), 200
+    response = jsonify(data)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/broodjes/<id>', methods=['GET'])
 def get_specific_broodje(id):
