@@ -1,4 +1,9 @@
 from flask import Flask, request, jsonify
+from xata.client import XataClient
+
+# xata = XataClient(db_name="pepper-en-zuur")
+ 
+client = XataClient(api_key="xau_5s5Wa9gZf6AuqesqIcx3ZKqyWfNVOPIu1", db_url="https://m-lalmohamed-s-workspace-t5jh8f.eu-central-1.xata.sh/db/pepper-en-zuur")
 
 app = Flask(__name__)
 
@@ -18,3 +23,20 @@ def add_recipe():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/GoodFood', methods=['GET'])
+def get_broodjes():
+    data = xata.data().query("GoodFood", {
+    "columns": [
+        "id",
+        "name",
+        "bunType",
+        "recipe",
+        "price",
+        "ingredients"
+    ]
+    })
+    print(data)
+    # resp = xata.data().query("GoodFood")
+    # broodjes = response.json
+    # print(broodjes)
