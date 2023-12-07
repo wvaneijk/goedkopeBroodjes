@@ -1,0 +1,59 @@
+curl --location --request POST 'http://127.0.0.1:5000/recipe' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Chocolate Chip Cookies",
+    "description": "Delicious classic chocolate chip cookies.",
+    "ingredients": [
+        {
+            "name": "Butter",
+            "quantity": "1 cup"
+        },
+        {
+            "name": "White Sugar",
+            "quantity": "1 cup"
+        },
+        {
+            "name": "Packed Brown Sugar",
+            "quantity": "1 cup"
+        },
+        {
+            "name": "Eggs",
+            "quantity": "2"
+        },
+        {
+            "name": "Vanilla Extract",
+            "quantity": "2 teaspoons"
+        },
+        {
+            "name": "Baking Soda",
+            "quantity": "1 teaspoon"
+        },
+        {
+            "name": "Hot Water",
+            "quantity": "2 teaspoons"
+        },
+        {
+            "name": "Salt",
+            "quantity": "1/2 teaspoon"
+        },
+        {
+            "name": "All-Purpose Flour",
+            "quantity": "3 cups"
+        },
+        {
+            "name": "Semisweet Chocolate Chips",
+            "quantity": "2 cups"
+        }
+    ],
+    "steps": [
+        "Preheat oven to 350 degrees F (175 degrees C).",
+        "Cream together the butter, white sugar, and brown sugar until smooth.",
+        "Beat in the eggs one at a time, then stir in the vanilla.",
+        "Dissolve baking soda in hot water. Add to batter along with salt.",
+        "Stir in flour, chocolate chips, and nuts.",
+        "Drop by large spoonfuls onto ungreased pans.",
+        "Bake for about 10 minutes in the preheated oven, or until edges are nicely browned."
+    ],
+    "cookingTime": "30 minutes",
+    "servings": "24 cookies"
+}'

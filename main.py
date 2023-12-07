@@ -5,20 +5,27 @@ from xata.client import XataClient
  
 client = XataClient(api_key="xau_5s5Wa9gZf6AuqesqIcx3ZKqyWfNVOPIu1", db_url="https://m-lalmohamed-s-workspace-t5jh8f.eu-central-1.xata.sh/db/pepper-en-zuur")
 
+import resolvers.recipeResolver
+import uuid
+
 app = Flask(__name__)
 
 
 @app.route('/recipe', methods=['POST'])
 def add_recipe():
-    # Get the JSON data sent in the POST request
     recipe_data = request.json
 
-    # Implement your logic here (e.g., save to database)
-    # For this example, we'll just print it
-    print(recipe_data)
+    # Interpret the recipe
+    interpretation = resolvers.recipeResolver.resolve_recipe(recipe_data)
 
-    # Return a response
-    return jsonify({"message": "Recipe received successfully"}), 200
+    # Here, you can further process, store, or respond with the interpretation
+    print(interpretation)
+
+    return jsonify({
+        "message": "Recipe received and interpreted",
+        "id": interpretation['id'],
+        "interpretation": interpretation
+    }), 200
 
 
 if __name__ == '__main__':
