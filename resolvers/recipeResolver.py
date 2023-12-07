@@ -1,5 +1,5 @@
 import uuid
-
+from fuzzywuzzy import fuzz
 
 def resolve_recipe(recipe_data):
     title = recipe_data.get("name", "")
@@ -37,3 +37,4 @@ def resolve_recipe(recipe_data):
                    'num_ingredients': num_ingredients
                }
            }, 200
+
