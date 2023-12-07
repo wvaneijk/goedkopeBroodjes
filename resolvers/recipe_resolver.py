@@ -39,3 +39,17 @@ def count_ingredients(ingredientsString):
 def estimate_recipe_duration(recipe_data):
     num_steps = len(recipe_data.get('steps', []))
     return num_steps * 5
+
+def get_all_sandwiches():
+    return dbUtils.get_db_client().data().query("GoodFood", {
+        "columns": [
+            "id",
+            "name",
+        ]
+    })
+
+def get_sandwich_by_id(id):
+    return dbUtils.get_db_client().records().get("GoodFood", id)
+
+def search_by_query(searchQuery):
+    return dbUtils.get_db_client().data().query("GoodFood", { "filter": { "name": { "$contains" : searchQuery } } })

@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "25178f51-3e8d-46b6-9f27-d5ac29b55c7e",
+		"name": "hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25373363"
+	},
+	"item": [
+		{
+			"name": "add sandwich",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"club sandwich\",\n    \"bunType\": \"casino wit\",\n    \"recipe\": \"{ \\\"test\\\": \\\"recipe\\\" }\",\n    \"price\": 7.5,\n    \"ingredients\": \"CLUBBIN\",\n    \"image\": [\n        {\n            \"base64Content\": \"SGVsbG8gV29ybGQ=\",\n            \"enablePublicUrl\": false,\n            \"mediaType\": \"application/octet-stream\",\n            \"name\": \"upload.txt\",\n            \"signedUrlTimeout\": 300\n        }\n    ],\n    \"number_of_ingredients\": 3,\n    \"estimated_preparation_time_minutes\": 2.5\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/goodfood",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"goodfood"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/sandwiches?search=kip",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sandwiches"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "kip"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/sandwiches/rec_clop7luhq14653bsqq2g",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sandwiches",
+						"rec_clop7luhq14653bsqq2g"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
