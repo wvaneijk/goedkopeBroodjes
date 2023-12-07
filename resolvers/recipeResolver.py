@@ -1,4 +1,5 @@
 import uuid
+from fuzzywuzzy import fuzz
 
 def resolve_recipe(recipe_data):
     # Count ingredients
@@ -27,4 +28,5 @@ def resolve_recipe(recipe_data):
         'estimated_preparation_time_minutes': estimated_prep_time,
         'category': category,
         'id': recipe_uuid
-    }
+    }, 200
+

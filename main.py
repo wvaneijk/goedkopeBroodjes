@@ -27,11 +27,7 @@ def add_recipe():
     # Here, you can further process, store, or respond with the interpretation
     print(interpretation)
 
-    return jsonify({
-        "message": "Recipe received and interpreted",
-        "id": interpretation['id'],
-        "interpretation": interpretation
-    }), 200
+    return jsonify(response), status_code
 
 @app.route('/goodfood', methods=['GET'])
 def get_broodjes():
