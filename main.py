@@ -1,30 +1,23 @@
 from flask import Flask, request, jsonify
+from xata.client import XataClient
 
-
-
+# xata = XataClient(db_name="pepper-en-zuur")
+import dbUtils
 import resolvers.recipeResolver
-
 
 app = Flask(__name__)
 
-@app.route('/recipe', methods=['POST'])
+@app.route('/addrecipe', methods=['POST'])
 def add_recipe():
     recipe_data = request.json
 
-    data = client.records().insert("GoodFood", recipe_data)
-    print("DATA: ", data)
-
-    # Interpret the recipe
-    response, status_code = resolvers.recipeResolver.resolve_recipe(data)
-
-    # Here, you can further process, store, or respond with the interpretation
-    # print(interpretation)
-
+    resolvedData, status_code = resolvers.recipeResolver.resolve_recipe(recipe_data)
+    response = dbUtils.get_db_client().records().insert("GoodFood", resolvedData)
     return jsonify(response), status_code
 
 @app.route('/goodfood', methods=['GET'])
 def get_broodjes():
-    data = client.data().query("GoodFood", {
+    data = dbUtils.get_db_client().data().query("GoodFood", {
     "columns": [
         "id",
         "name",
