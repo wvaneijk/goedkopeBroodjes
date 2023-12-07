@@ -3,17 +3,23 @@ from xata.client import XataClient
 
 # xata = XataClient(db_name="pepper-en-zuur")
  
-client = XataClient(api_key="xau_5s5Wa9gZf6AuqesqIcx3ZKqyWfNVOPIu1", db_url="https://m-lalmohamed-s-workspace-t5jh8f.eu-central-1.xata.sh/db/pepper-en-zuur")
 
 import resolvers.recipeResolver
 import uuid
 
 app = Flask(__name__)
 
+client = XataClient(api_key="xau_iuTwIae5Qmg3NAMC6DvOURCTT2KMmHfm0", db_url="https://m-lalmohamed-s-workspace-t5jh8f.eu-central-1.xata.sh/db/pepper-en-zuur")
+
 
 @app.route('/recipe', methods=['POST'])
 def add_recipe():
     recipe_data = request.json
+
+    data = client.records().insert("GoodFood", {
+        recipe_data
+    })
+    print(data)
 
     # Interpret the recipe
     interpretation = resolvers.recipeResolver.resolve_recipe(recipe_data)
@@ -27,13 +33,9 @@ def add_recipe():
         "interpretation": interpretation
     }), 200
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-@app.route('/GoodFood', methods=['GET'])
+@app.route('/goodfood', methods=['GET'])
 def get_broodjes():
-    data = xata.data().query("GoodFood", {
+    data = client.data().query("GoodFood", {
     "columns": [
         "id",
         "name",
@@ -47,3 +49,12 @@ def get_broodjes():
     # resp = xata.data().query("GoodFood")
     # broodjes = response.json
     # print(broodjes)
+    return jsonify({
+        "message": "Available broodjes",
+        "data": data
+    }), 200
+
+# @app.route('')
+
+if __name__ == '__main__':
+    app.run(debug=True)
