@@ -1,4 +1,7 @@
-def resolve_recipe(recipe_data):
+import dbUtils
+
+
+def createRecipeMutation(recipe_data):
     num_ingredients = count_ingredients(recipe_data.get('ingredients', []))
     estimated_prep_time = estimate_recipe_duration(recipe_data)
     return {
@@ -13,6 +16,20 @@ def resolve_recipe(recipe_data):
                'estimated_preparation_time_minutes': estimated_prep_time
            }, 200
 
+def addRecipe(recipe_data):
+    response, responseCode = createRecipeMutation(recipe_data)
+    if responseCode is not 200:
+        raise ValueError("There is something wrong with the recipe mutation")
+    return dbUtils.get_db_client().records().insert("GoodFood", response)
+
+
+def updateRecipe(recipe_id, recipe_data):
+    if recipe_id is None:
+        return {"no ID is provided"}, 400
+    response, responseCode = createRecipeMutation(recipe_data)
+    if responseCode is not 200:
+        raise ValueError("There is something wrong with the recipe mutation")
+    return dbUtils.get_db_client().records().update("GoodFood", recipe_id, response)
 
 def count_ingredients(ingredientsString):
     splitIngredients = ingredientsString.split(' ')
