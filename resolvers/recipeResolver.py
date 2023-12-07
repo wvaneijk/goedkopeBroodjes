@@ -1,5 +1,4 @@
 import uuid
-from fuzzywuzzy import fuzz
 
 def resolve_recipe(recipe_data):
     # Count ingredients
