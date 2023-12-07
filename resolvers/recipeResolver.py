@@ -1,7 +1,8 @@
 import uuid
-from fuzzywuzzy import fuzz
+
 
 def resolve_recipe(recipe_data):
+    title = recipe_data.get("name", "")
     # Count ingredients
     num_ingredients = len(recipe_data.get('ingredients', []))
 
@@ -24,9 +25,15 @@ def resolve_recipe(recipe_data):
             break
 
     return {
-        'number_of_ingredients': num_ingredients,
-        'estimated_preparation_time_minutes': estimated_prep_time,
-        'category': category,
-        'id': recipe_uuid
-    }, 200
-
+               'uuid': recipe_uuid,
+               'resolved_data': {
+                   'bunType': recipe_data.get('bunType', ''),
+                   'original_id': recipe_data.get('id', ''),
+                   'ingredients': recipe_data.get('ingredients', ''),
+                   'name': title,
+                   'price': recipe_data.get('price', 0),
+                   'xata': recipe_data.get('xata', {}),
+                   'estimated_prep_time': estimated_prep_time,
+                   'num_ingredients': num_ingredients
+               }
+           }, 200
